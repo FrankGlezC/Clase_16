@@ -1,6 +1,9 @@
 const express = require('express')
 const app = express()
 
+//propio del ejercicio 5
+const router = express.Router();
+
 //app.get('/')
 
 /*
@@ -41,12 +44,20 @@ app.get('/handler1',function(req,res){
     */
 
 // Ejercicio 4 
+/*
     app.use (function(req,res,next)
     {
         console.log('Soy  un Middleware')
         res.send('soy un middleware');
         next();
     })
+*/
+   router.get('/',(req,res)=>{
+       res.sendFile(__dirname+'/public/file.txt')
+   })
+
+   app.use('/asset',router);
+
     app.listen(9000,()=>{
         console.log("El servidor está escuchando en el puerto 9000...")
     })
